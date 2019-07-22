@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-let broswer, page;
+let browser, page;
 
 beforeEach(async () => {
     browser = await puppeteer.launch({
