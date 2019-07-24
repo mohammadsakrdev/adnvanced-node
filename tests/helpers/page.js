@@ -11,13 +11,35 @@ class CustomPage {
 
         return new Proxy(customPage, {
             get: function (target, property) {
-                return customPage[property] || page[property] || browser[property];
+                return customPage[property] || browser[property] || page[property];
             }
         })
     }
 
     constructor(page) {
         this.page = page;
+    }
+
+    async login() {
+        const user = await userFactory();
+
+        const {
+            session,
+            sig
+        } = sessionFactory(user);
+
+        await page.setCookie({
+            name: 'session',
+            value: session
+        });
+
+        await page.setCookie({
+            name: 'session.sig',
+            value: sig
+        });
+
+        await page.goto('localhost:3000');
+        await page.waitFor('a[href="/auth/logout"]');
     }
 }
 

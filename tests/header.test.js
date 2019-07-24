@@ -28,7 +28,7 @@ test('Clicking login button', async () => {
     expect(url).toMatch(/accounts\.google\.com/)
 });
 
-test('Show signout when log in', async () => {
+test('Show sign out when log in', async () => {
     const user = await userFactory();
 
     const {
