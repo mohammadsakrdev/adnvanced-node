@@ -38,7 +38,7 @@ class CustomPage {
             value: sig
         });
 
-        await page.goto('localhost:3000');
+        await page.goto('localhost:3000/blogs');
         await page.waitFor('a[href="/auth/logout"]');
     }
 }
